@@ -1,0 +1,40 @@
+//kmp算法的主要作用在于对next数组的运用，所以这里只给出next数组的模板
+//性质1：对于每一个长度len的子串，该子串的最小循环节为len-next[len]
+//性质2：kmp的next不断向前递归的过程可以保证对于每一个当前前缀，都有一段后缀与之对应
+#include<stdio.h>
+#include<iostream>
+#include<string>
+using namespace std ;
+const int maxn = 1e6+5;
+int main()
+{
+	string str1,str2;
+	cin>>str1>>str2;
+	int len1=str1.size(),len2=str2.size();
+
+	int i = 0, j=0;
+	while(i<len1)
+	{
+		if(j==-1||str1[i]==str2[j]) 
+		{
+			i++;j++;
+		}
+		else j=-1;
+		if(j==len2)
+		{
+			cout<<i-len2+1;
+			break;
+		}
+	}
+
+	cout<<-1<<endl;
+	return 0;
+}
+
+
+
+全局变量本身就是静态存储方式，静态全局变量当然也
+是静态存储方式。但是他们的作用域不同，非静态全局变量的作用域是整
+个源程序（多个源文件可以共同使用）；而静态全局变量限制了其作用
+域，只在定义该变量的源文件内有效（隐藏的功能），在同一源程序的其
+他源文件中不能使用它
